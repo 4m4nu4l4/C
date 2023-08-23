@@ -1,0 +1,43 @@
+// 2 com vetores
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int i, cont = 0;
+    int TAM = 3;
+    float media = 0, acum_notas = 0;
+    float *notas;
+
+    printf("\nInforme o tamanho do vetor de notas: ");
+    scanf("%d", &TAM);
+
+    notas = (float *)malloc(TAM * sizeof(float)); // aqui eu achei melhor fazer com o TAM, 
+    //pq nao entendi mto bem como funciona a configuração de tamanho no malloc
+
+    if (notas == NULL) {
+        printf("Erro");
+        return 1;
+    }
+
+    printf("\nInforme %d notas\n", TAM);
+
+    for (i = 0; i < TAM; i++) {
+        printf("\nInforme a %dª nota: ", i + 1);
+        scanf("%f", &notas[i]);
+
+        if (notas[i] < 7) {
+            cont++;
+        }
+
+        acum_notas += notas[i];
+    }
+
+    media = acum_notas / TAM;
+
+    printf("\nA media e: %.2f\n", media);
+    printf("Notas abaixo de sete: %d\n\n", cont);
+
+    free(notas); // Libera a memória alocada
+
+    return 0;
+}
